@@ -2,39 +2,47 @@
 
 Plataforma desktop em desenvolvimento para gestao de clinicas odontologicas, com foco em agenda operacional, prontuario, atendimento, autenticacao e integracao dedicada com WhatsApp.
 
-## Destaques
+## Highlights
 - aplicacao desktop com Electron para operacao diaria da clinica
 - backend modular para autenticacao, pacientes, agenda e automacoes
 - engine isolado de WhatsApp para mensageria e integracoes operacionais
 - separacao clara entre interface, IPC, servicos, backend e mensageria
 - copia publica sanitizada para demonstrar arquitetura sem expor ambiente real
 
-## Problema que o produto resolve
-A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento e aumentando visibilidade sobre a rotina da clinica.
+## Problema
+A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento, melhorando a organizacao da recepcao e aumentando visibilidade sobre a rotina da clinica.
 
 ## Screenshots
 ### Login e controle de acesso
+Tela inicial com autenticacao voltada ao uso interno da clinica e entrada controlada no fluxo operacional.
 ![Login](docs/screenshots/01-login.png)
 
 ### Dashboard operacional da clinica
+Visao inicial consolidada para orientar a operacao diaria e destacar informacoes de contexto rapido.
 ![Dashboard](docs/screenshots/02-dashboard.png)
 
 ### Agenda diaria com foco em operacao
+Interface pensada para a rotina de recepcao e acompanhamento dos compromissos do dia.
 ![Agenda diaria](docs/screenshots/03-agenda-dia.png)
 
 ### Gestao de agendamentos
+Fluxo dedicado para organizar marcacoes, atualizacoes e acompanhamento da agenda da clinica.
 ![Agendamentos](docs/screenshots/04-agendamentos.png)
 
 ### Prontuario e historico do paciente
+Area voltada a concentrar dados clinicos, historico e contexto de atendimento do paciente.
 ![Prontuario](docs/screenshots/05-prontuario.png)
 
 ### Painel de gestao
+Tela administrativa com foco em acompanhamento operacional e visibilidade gerencial.
 ![Gestao](docs/screenshots/06-gestao.png)
 
 ### Configuracoes do sistema
+Area de parametrizacao para ajustar regras, dados e configuracoes do ambiente da clinica.
 ![Configuracoes](docs/screenshots/07-configuracoes.png)
 
 ### Cadastro de novo paciente
+Fluxo de entrada de novos pacientes com foco em organizacao cadastral e continuidade do atendimento.
 ![Cadastro de novo paciente](docs/screenshots/08-cadastro-novo-paciente.png)
 
 ## O que este projeto demonstra
@@ -44,7 +52,8 @@ A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, com
 - preocupacao pratica com autenticacao, segredos e publicacao segura
 - estrutura preparada para evolucao de produto e modularizacao progressiva
 
-## Arquitetura resumida
+## Arquitetura
+### Visao resumida
 ```text
 Electron UI
   -> preload bridge
@@ -54,7 +63,7 @@ Electron UI
         -> whatsapp-engine
 ```
 
-## Estrutura principal
+### Estrutura principal
 - `main.js`: orquestracao da aplicacao Electron
 - `preload.js`: ponte controlada entre renderer e backend local
 - `ipc/`: handlers por dominio usados na aplicacao desktop
@@ -79,7 +88,7 @@ Camada de comunicacao voltada a confirmacoes, mensagens e integracoes operaciona
 ### Financeiro e gestao
 Modulos para acompanhamento de rotinas administrativas e indicadores operacionais.
 
-## Decisoes tecnicas
+## Decisoes Tecnicas
 ### Electron como shell da aplicacao
 A escolha por Electron atende ao objetivo de entregar uma experiencia desktop unica para operacao interna, com distribuicao simplificada e acesso controlado aos recursos locais da aplicacao.
 
@@ -91,6 +100,13 @@ A integracao de WhatsApp foi separada em um servico proprio para reduzir acoplam
 
 ### Sanitizacao para portfolio publico
 A versao publicada foi separada do sistema operacional original. Segredos, logs, sessoes, bancos locais e dados operacionais foram removidos ou substituidos por placeholders para evitar exposicao indevida.
+
+## Highlights de Engenharia
+- separacao de responsabilidades entre interface, ponte de integracao, servicos e backend
+- organizacao por dominio em vez de concentrar a complexidade nas telas
+- integracao externa isolada em um servico proprio para reduzir acoplamento
+- preocupacao real com seguranca na publicacao do portfolio
+- estrutura que comunica produto, operacao e capacidade de evolucao tecnica
 
 ## Stack tecnica
 - Electron
@@ -124,6 +140,7 @@ Comandos principais presentes no projeto:
 - ampliar observabilidade e documentacao tecnica
 - consolidar ainda mais a modularizacao por dominio
 - preparar demonstracao publica mais proxima do fluxo real
+- adicionar GIF curto de navegacao do produto
 
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
