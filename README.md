@@ -12,27 +12,6 @@ Plataforma desktop em desenvolvimento para gestao de clinicas odontologicas, com
 ## Problema
 A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento, melhorando a organizacao da recepcao e aumentando visibilidade sobre a rotina da clinica.
 
-## Demos em video
-### Dashboard e visao operacional
-Demonstra a entrada no ambiente principal da plataforma e a consolidacao visual de informacoes importantes para a rotina da clinica.
-[Assistir demo do dashboard](docs/screenshots/02-dashboard.mp4)
-
-### Agenda diaria e acompanhamento da rotina
-Mostra o fluxo de leitura e acompanhamento dos compromissos do dia, reforcando o foco operacional da aplicacao.
-[Assistir demo da agenda diaria](docs/screenshots/03-agenda-dia.mp4)
-
-### Cadastro de paciente
-Evidencia o fluxo de entrada cadastral, organizacao dos dados do paciente e preparacao para continuidade do atendimento.
-[Assistir demo do cadastro de paciente](docs/screenshots/04-cadastro-paciente-demo.mp4)
-
-### Prontuario e historico clinico
-Destaca a camada clinica do produto, concentrando historico, contexto do paciente e apoio a continuidade assistencial.
-[Assistir demo do prontuario](docs/screenshots/06-prontuario-demo.mp4)
-
-### Configuracoes da clinica e parametros operacionais
-Apresenta a camada de configuracoes da clinica, com parametros operacionais e ajustes administrativos que reforcam profundidade funcional e maturidade de produto.
-[Assistir demo de configuracoes da clinica](docs/screenshots/05-configuracoes-clinica-demo.mp4)
-
 ## Screenshots
 ### Login e controle de acesso
 Tela inicial com autenticacao voltada ao uso interno da clinica e entrada controlada no fluxo operacional.
@@ -165,4 +144,5 @@ Comandos principais presentes no projeto:
 
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
+
 
