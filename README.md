@@ -99,5 +99,30 @@ Comandos principais presentes no projeto:
 - backend principal: `npm run backend:start`
 - engine de mensageria: ver scripts em `whatsapp-engine/package.json`
 
+## Screenshots
+### Login
+![Login](docs/screenshots/01-login.png)
+
+### Dashboard
+![Dashboard](docs/screenshots/02-dashboard.png)
+
+### Agenda diaria
+![Agenda diaria](docs/screenshots/03-agenda-dia.png)
+
+### Agendamentos
+![Agendamentos](docs/screenshots/04-agendamentos.png)
+
+### Prontuario
+![Prontuario](docs/screenshots/05-prontuario.png)
+
+### Gestao
+![Gestao](docs/screenshots/06-gestao.png)
+
+### Configuracoes
+![Configuracoes](docs/screenshots/07-configuracoes.png)
+
+### Cadastro de novo paciente
+![Cadastro de novo paciente](docs/screenshots/08-cadastro-novo-paciente.png)
+
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar decisao tecnica, estrutura de produto e maturidade de implementacao sem comprometer seguranca operacional.
