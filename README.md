@@ -1,55 +1,98 @@
 # Voithos
 
-Voithos e uma plataforma desktop para operacao de clinicas odontologicas, desenhada para centralizar agenda, atendimento, prontuario, comunicacao e rotinas administrativas em uma unica experiencia.
+Plataforma desktop em desenvolvimento para gestao de clinicas odontologicas, com foco em agenda operacional, prontuario, atendimento, autenticacao e integracao dedicada com WhatsApp.
 
-Esta versao foi preparada como portfolio tecnico. O objetivo e demonstrar arquitetura, organizacao de codigo, preocupacao com seguranca e capacidade de entrega em um produto com escopo real.
+## Destaques
+- aplicacao desktop com Electron para operacao diaria da clinica
+- backend modular para autenticacao, pacientes, agenda e automacoes
+- engine isolado de WhatsApp para mensageria e integracoes operacionais
+- separacao clara entre interface, IPC, servicos, backend e mensageria
+- copia publica sanitizada para demonstrar arquitetura sem expor ambiente real
 
-## Resumo Executivo
-- Aplicacao desktop com Electron para operacao diaria
-- Backend dedicado para autenticacao, pacientes, agenda e automacoes
-- Motor isolado de WhatsApp para mensageria e integracoes
-- Organizacao modular com IPC, servicos compartilhados e camadas separadas
-- Estrutura voltada a crescimento de produto, multi-modulo e evolucao operacional
+## Problema que o produto resolve
+A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento e aumentando visibilidade sobre a rotina da clinica.
 
-## O Que Este Projeto Demonstra
+## Screenshots
+### Login e controle de acesso
+![Login](docs/screenshots/01-login.png)
+
+### Dashboard operacional da clinica
+![Dashboard](docs/screenshots/02-dashboard.png)
+
+### Agenda diaria com foco em operacao
+![Agenda diaria](docs/screenshots/03-agenda-dia.png)
+
+### Gestao de agendamentos
+![Agendamentos](docs/screenshots/04-agendamentos.png)
+
+### Prontuario e historico do paciente
+![Prontuario](docs/screenshots/05-prontuario.png)
+
+### Painel de gestao
+![Gestao](docs/screenshots/06-gestao.png)
+
+### Configuracoes do sistema
+![Configuracoes](docs/screenshots/07-configuracoes.png)
+
+### Cadastro de novo paciente
+![Cadastro de novo paciente](docs/screenshots/08-cadastro-novo-paciente.png)
+
+## O que este projeto demonstra
 - modelagem de um produto real para contexto de saude
+- organizacao de codigo por responsabilidade e por dominio
 - separacao entre shell desktop, interface, backend e integracoes
-- preocupacao com autenticacao, segredos e ambientes
-- organizacao por dominio em vez de codigo acoplado a tela
-- integracao com servicos externos sem misturar tudo na interface
+- preocupacao pratica com autenticacao, segredos e publicacao segura
+- estrutura preparada para evolucao de produto e modularizacao progressiva
 
-## Arquitetura
-### Desktop
-- `main.js`: orquestra a aplicacao Electron
-- `preload.js`: expoe uma ponte controlada entre renderer e backend local
-- `ipc/`: handlers por dominio para a aplicacao desktop
+## Arquitetura resumida
+```text
+Electron UI
+  -> preload bridge
+    -> IPC handlers
+      -> services/shared
+        -> backend principal
+        -> whatsapp-engine
+```
 
-### Backend principal
+## Estrutura principal
+- `main.js`: orquestracao da aplicacao Electron
+- `preload.js`: ponte controlada entre renderer e backend local
+- `ipc/`: handlers por dominio usados na aplicacao desktop
 - `backend/src/`: API, controladores, middlewares, repositorios e servicos
-- `prisma/`: modelo relacional usado pelo backend principal
-- `services/` e `shared/`: regras de negocio e configuracoes reutilizaveis
+- `services/` e `shared/`: regras de negocio e adaptadores reutilizaveis
+- `whatsapp-engine/`: servico isolado de mensageria e integracao
+- `prisma/`: modelo de dados do backend principal
 
-### Motor de mensageria
-- `whatsapp-engine/`: servico separado para envio, filas, autenticacao e integracao com WhatsApp
-- stack complementar com TypeScript, BullMQ, Redis, Prisma, Pino e Baileys
-
-## Modulos de Maior Valor no Portfolio
-### 1. Agenda e operacao diaria
+## Modulos de maior valor no portfolio
+### Agenda e operacao diaria
 Fluxos de agenda diaria, agenda mensal e gerenciamento de agendamentos com foco em uso operacional real.
 
-### 2. Pacientes e prontuario
+### Pacientes e prontuario
 Cadastro, historico, documentos e dados clinicos organizados em torno da jornada do paciente.
 
-### 3. Autenticacao e perfis
+### Autenticacao e perfis
 Controle de acesso, perfis de usuario e isolamento de responsabilidades administrativas e clinicas.
 
-### 4. Comunicacao e automacao
+### Comunicacao e automacao
 Camada de comunicacao voltada a confirmacoes, mensagens e integracoes operacionais.
 
-### 5. Financeiro e gestao
+### Financeiro e gestao
 Modulos para acompanhamento de rotinas administrativas e indicadores operacionais.
 
-## Stack Tecnica
+## Decisoes tecnicas
+### Electron como shell da aplicacao
+A escolha por Electron atende ao objetivo de entregar uma experiencia desktop unica para operacao interna, com distribuicao simplificada e acesso controlado aos recursos locais da aplicacao.
+
+### Separacao entre UI, IPC e backend
+A base evita concentrar toda a regra de negocio na interface. A camada de IPC faz a ponte entre a UI e os servicos, enquanto backend e modulos compartilhados concentram responsabilidades de dominio.
+
+### Motor de mensageria isolado
+A integracao de WhatsApp foi separada em um servico proprio para reduzir acoplamento, facilitar evolucao tecnica e manter preocupacoes operacionais fora do fluxo principal da interface.
+
+### Sanitizacao para portfolio publico
+A versao publicada foi separada do sistema operacional original. Segredos, logs, sessoes, bancos locais e dados operacionais foram removidos ou substituidos por placeholders para evitar exposicao indevida.
+
+## Stack tecnica
 - Electron
 - Node.js
 - JavaScript e TypeScript
@@ -61,35 +104,12 @@ Modulos para acompanhamento de rotinas administrativas e indicadores operacionai
 - Pino
 - Baileys
 
-## Estrutura do Repositorio
-- `ipc/`: integracao desktop por dominio
-- `backend/`: backend principal da aplicacao
-- `services/`: servicos locais e regras de negocio
-- `shared/`: configuracoes e adaptadores compartilhados
-- `whatsapp-engine/`: servico isolado de mensageria
-- `assets/`: recursos visuais da aplicacao
-
-## Seguranca e Publicacao
-Esta copia foi separada do sistema operacional original para evitar impacto no ambiente ativo.
-
-Nesta versao publica:
-- arquivos sensiveis e operacionais foram excluidos
-- variaveis de ambiente foram convertidas para placeholders
-- logs, sessoes, bancos locais e dados operacionais nao entram no repositorio
-- o foco esta na arquitetura e na qualidade tecnica, nao na exposicao do ambiente real
-
-Arquivos de referencia:
-- `.env.example`
-- `.gitignore`
-- `PORTFOLIO_SCOPE.md`
-- `docs/DEMO-GUIDE.md`
-
-## Como Ler Este Projeto como Recrutador
-Se voce estiver avaliando esta base como portfolio, os pontos mais relevantes sao:
+## Como ler este projeto como recrutador
+Os pontos mais relevantes nesta base sao:
 - capacidade de estruturar um produto com varias camadas
 - coerencia entre interface, backend e integracoes
-- preocupacao pratica com seguranca e publicacao
-- organizacao progressiva para evolucao futura do sistema
+- preocupacao com seguranca e publicacao responsavel
+- visao de produto aplicada a um sistema operacional real
 
 ## Execucao
 Esta copia publica foi preparada com foco em avaliacao tecnica. O setup completo depende de variaveis de ambiente e servicos auxiliares definidos em `.env.example`.
@@ -99,30 +119,11 @@ Comandos principais presentes no projeto:
 - backend principal: `npm run backend:start`
 - engine de mensageria: ver scripts em `whatsapp-engine/package.json`
 
-## Screenshots
-### Login
-![Login](docs/screenshots/01-login.png)
-
-### Dashboard
-![Dashboard](docs/screenshots/02-dashboard.png)
-
-### Agenda diaria
-![Agenda diaria](docs/screenshots/03-agenda-dia.png)
-
-### Agendamentos
-![Agendamentos](docs/screenshots/04-agendamentos.png)
-
-### Prontuario
-![Prontuario](docs/screenshots/05-prontuario.png)
-
-### Gestao
-![Gestao](docs/screenshots/06-gestao.png)
-
-### Configuracoes
-![Configuracoes](docs/screenshots/07-configuracoes.png)
-
-### Cadastro de novo paciente
-![Cadastro de novo paciente](docs/screenshots/08-cadastro-novo-paciente.png)
+## Roadmap curto
+- evoluir demonstracao guiada do produto
+- ampliar observabilidade e documentacao tecnica
+- consolidar ainda mais a modularizacao por dominio
+- preparar demonstracao publica mais proxima do fluxo real
 
 ## Observacao
-Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar decisao tecnica, estrutura de produto e maturidade de implementacao sem comprometer seguranca operacional.
+Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
