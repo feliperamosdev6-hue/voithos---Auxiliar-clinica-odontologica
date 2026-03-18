@@ -1,0 +1,18 @@
+[
+  {
+    "prontuario": "20250115103000",
+    "fullName": "Exemplo de Paciente",
+    "birthDate": "1990-01-01",
+    "cpf": "111.222.333-44",
+    "phone": "(11) 98877-6655",
+    "email": "paciente@email.com",
+    "address": "Rua Exemplo, 123, Centro, São Paulo - SP",
+    "notes": "Paciente veio para uma avaliação inicial.",
+    "images": [
+      {
+        "name": "raio-x-panoramico.jpg",
+        "data": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE..."
+      }
+    ]
+  }
+]

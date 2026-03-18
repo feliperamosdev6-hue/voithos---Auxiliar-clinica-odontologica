@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voithos WhatsApp Engine</title>
+  <link rel="stylesheet" href="/admin-assets/admin.css">
+</head>
+<body data-page="dashboard">
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <p class="eyebrow">Voithos Platform</p>
+        <h1>WhatsApp Angel</h1>
+        <p class="muted">Painel operacional para conexao, monitoramento e suporte de multiplas clinicas.</p>
+      </div>
+
+      <nav class="nav-panel" aria-label="Modulos do painel">
+        <button class="nav-link active" data-nav="dashboard" type="button">Dashboard</button>
+        <button class="nav-link" data-nav="instances" type="button">Instancias</button>
+        <button class="nav-link" data-nav="messages" type="button">Mensagens</button>
+        <button class="nav-link" data-nav="webhooks" type="button">Webhooks</button>
+        <button class="nav-link" data-nav="security" type="button">Seguranca</button>
+        <button class="nav-link" data-nav="logs" type="button">Logs</button>
+        <button class="nav-link" data-nav="settings" type="button">Configuracoes</button>
+      </nav>
+
+      <section class="sidebar-panel">
+        <div class="sidebar-panel-header">
+          <div>
+            <p class="eyebrow">Operacao rapida</p>
+            <h2>Nova instancia</h2>
+          </div>
+        </div>
+        <form id="create-instance-form" class="stack">
+          <label>
+            <span>Clinic ID</span>
+            <input id="clinic-id" name="clinicId" type="text" placeholder="clinica-centro" required>
+          </label>
+          <label>
+            <span>Display name</span>
+            <input id="display-name" name="displayName" type="text" placeholder="Clinica Centro">
+          </label>
+          <button type="submit" class="btn btn-primary">Criar instancia</button>
+        </form>
+      </section>
+
+      <section class="sidebar-panel">
+        <div class="sidebar-panel-header">
+          <div>
+            <p class="eyebrow">Sessao</p>
+            <h2>Controles</h2>
+          </div>
+        </div>
+        <div class="stack compact">
+          <button id="refresh-all" class="btn btn-secondary" type="button">Atualizar tudo</button>
+          <label class="toggle">
+            <input id="auto-refresh" type="checkbox" checked>
+            <span>Atualizacao automatica a cada 15s</span>
+          </label>
+          <button id="logout-button" class="btn btn-ghost" type="button">Encerrar sessao</button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <p id="page-eyebrow" class="eyebrow">Dashboard</p>
+          <h2 id="page-title">Visao operacional do ambiente</h2>
+          <p id="page-description" class="muted">Resumo do engine, saude da API e atividade recente das instancias.</p>
+        </div>
+        <div class="topbar-actions">
+          <span id="connection-indicator" class="pill">API</span>
+          <span id="last-refresh" class="muted">Sem sincronizacao</span>
+        </div>
+      </header>
+
+      <section class="view-panel active" data-view="dashboard">
+        <div class="summary-grid dashboard-summary-grid">
+          <article class="summary-card">
+            <span>Total de instancias</span>
+            <strong id="summary-total">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Conectadas</span>
+            <strong id="summary-connected">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Conectando</span>
+            <strong id="summary-connecting">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Desconectadas</span>
+            <strong id="summary-disconnected">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Com erro</span>
+            <strong id="summary-error">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Mensagens enviadas hoje</span>
+            <strong id="dashboard-sent-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Falhas hoje</span>
+            <strong id="dashboard-failed-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Jobs pendentes</span>
+            <strong id="dashboard-queued-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Processando</span>
+            <strong id="dashboard-processing-today">0</strong>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Saude do ambiente</h3>
+                <p class="muted">Estado geral da API, sincronizacao e prontidao operacional.</p>
+              </div>
+            </div>
+            <div class="dashboard-health">
+              <div class="health-card">
+                <span class="health-label">Status geral da API</span>
+                <strong id="dashboard-api-status">Aguardando</strong>
+                <p class="muted">O painel continua usando a mesma API interna do engine.</p>
+              </div>
+              <div class="health-card">
+                <span class="health-label">Ultima sincronizacao</span>
+                <strong id="dashboard-last-refresh">Sem sincronizacao</strong>
+                <p class="muted">Atualize tudo ou aguarde o refresh automatico.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Atividade recente</h3>
+                <p class="muted">Movimentacoes recentes das instancias com base nos dados disponiveis.</p>
+              </div>
+            </div>
+            <div id="recent-activity" class="activity-list empty-state">Carregando atividade recente...</div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Risco operacional</h3>
+                <p class="muted">Indicadores simples para triagem rapida do ambiente multi-clinica.</p>
+              </div>
+            </div>
+            <div class="dashboard-health">
+              <div class="health-card">
+                <span class="health-label">Instancias com erro</span>
+                <strong id="dashboard-instances-error">0</strong>
+                <p class="muted">Baseado no status atual consolidado.</p>
+              </div>
+              <div class="health-card">
+                <span class="health-label">Sem atividade recente</span>
+                <strong id="dashboard-inactive-count">0</strong>
+                <p class="muted">Instancias sem atividade nas ultimas 24 horas ou sem lastSeenAt.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Clinicas ativas</h3>
+                <p class="muted">Ultimas clinicas com atividade relevante no ambiente.</p>
+              </div>
+            </div>
+            <div id="recent-clinics" class="activity-list empty-state">Carregando clinicas ativas...</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view-panel" data-view="instances">
+        <div class="panel">
+          <div class="panel-header panel-header-stack">
+            <div>
+              <h3>Instancias</h3>
+              <p class="muted">Centro operacional do produto, com filtros, consulta de status e acoes rapidas.</p>
+            </div>
+            <div class="instance-tabs" id="instance-tabs">
+              <button class="instance-tab active" data-instance-segment="" type="button">Todas</button>
+              <button class="instance-tab" data-instance-segment="CONNECTED" type="button">Conectadas</button>
+              <button class="instance-tab" data-instance-segment="CONNECTING" type="button">Conectando</button>
+              <button class="instance-tab" data-instance-segment="DISCONNECTED" type="button">Desconectadas</button>
+              <button class="instance-tab" data-instance-segment="ERROR" type="button">Com erro</button>
+            </div>
+            <div class="filters-bar">
+              <input id="instance-search" type="search" placeholder="Busca rapida por clinicId, numero ou nome">
+              <input id="instance-clinic-filter" type="text" placeholder="Clinic ID">
+              <input id="instance-name-filter" type="text" placeholder="Display name">
+              <input id="instance-phone-filter" type="text" placeholder="Numero">
+              <select id="status-filter" aria-label="Filtrar por status">
+                <option value="">Todos os status</option>
+                <option value="CONNECTED">Connected</option>
+                <option value="CONNECTING">Connecting</option>
+                <option value="DISCONNECTED">Disconnected</option>
+                <option value="ERROR">Error</option>
+                <option value="CREATED">Created</option>
+              </select>
+              <select id="created-filter" aria-label="Filtrar por criacao">
+                <option value="">Criacao: todas</option>
+                <option value="today">Criadas hoje</option>
+                <option value="7d">Ultimos 7 dias</option>
+                <option value="30d">Ultimos 30 dias</option>
+              </select>
+              <select id="activity-filter" aria-label="Filtrar por atividade">
+                <option value="">Atividade: todas</option>
+                <option value="24h">Ativas 24h</option>
+                <option value="inactive">Sem atividade 24h</option>
+              </select>
+              <button class="btn btn-ghost filter-placeholder" type="button" disabled>Tags em breve</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="instances-layout">
+          <article class="panel instances-table-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Lista principal</h3>
+                <p class="muted">Status, dados da clinica e operacoes do dia a dia.</p>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Clinic ID</th>
+                    <th>Instance ID</th>
+                    <th>Numero</th>
+                    <th>Display name</th>
+                    <th>Criada em</th>
+                    <th>Ultima atividade</th>
+                    <th class="actions-column">Acoes</th>
+                  </tr>
+                </thead>
+                <tbody id="instances-table-body">
+                  <tr><td colspan="8" class="empty-state">Carregando instancias...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <div id="instances-pagination-meta" class="muted">Carregando pagina...</div>
+              <div class="panel-actions">
+                <button id="instances-prev-page" class="btn btn-ghost btn-small" type="button">Anterior</button>
+                <button id="instances-next-page" class="btn btn-secondary btn-small" type="button">Proxima</button>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel details-panel">
+            <div class="panel-header panel-header-stack">
+              <div>
+                <h3>Detalhes da instancia</h3>
+                <p id="instance-details-subtitle" class="muted">Selecione uma instancia para ver detalhes operacionais.</p>
+              </div>
+              <div class="panel-actions compact-actions">
+                <button id="details-open-messages" class="btn btn-ghost btn-small" type="button" disabled>Mensagens</button>
+                <button id="details-open-logs" class="btn btn-ghost btn-small" type="button" disabled>Logs</button>
+                <button id="details-refresh-list" class="btn btn-ghost btn-small" type="button">Atualizar lista</button>
+                <button id="details-connection-test" class="btn btn-secondary btn-small" type="button" disabled>Teste de conexao</button>
+                <button id="details-refresh" class="btn btn-secondary btn-small" type="button" disabled>Atualizar detalhes</button>
+              </div>
+            </div>
+
+            <div class="detail-tabbar" role="tablist" aria-label="Contexto da instancia">
+              <button class="detail-tab active" data-detail-tab="overview" type="button">Dados da instancia</button>
+              <button class="detail-tab" data-detail-tab="webhooks" type="button">Webhooks e configuracao</button>
+            </div>
+
+            <div class="detail-tab-panel active" data-detail-panel="overview">
+              <div id="instance-details" class="details-card empty-state">Nenhuma instancia selecionada.</div>
+
+              <div class="details-logs-block">
+                <div class="panel-header">
+                  <div>
+                    <h3>Atalhos rapidos</h3>
+                    <p class="muted">Acoes e contexto imediato da instancia selecionada.</p>
+                  </div>
+                </div>
+                <div id="instance-shortcuts" class="actions-inline empty-state">Selecione uma instancia para habilitar os atalhos.</div>
+              </div>
+
+              <div class="details-logs-block">
+                <div class="panel-header">
+                  <div>
+                    <h3>Saude e integracao</h3>
+                    <p class="muted">Indicadores complementares de runtime e preparo de webhook.</p>
+                  </div>
+                </div>
+                <div id="instance-health" class="stack empty-state">Selecione uma instancia para ver a saude operacional.</div>
+              </div>
+
+              <div class="details-logs-block">
+                <div class="panel-header">
+                  <div>
+                    <h3>Logs recentes</h3>
+                    <p class="muted">Eventos mais recentes da instancia selecionada.</p>
+                  </div>
+                </div>
+                <div id="instance-logs" class="log-list empty-state">Selecione uma instancia para carregar os logs.</div>
+              </div>
+
+              <div class="details-logs-block">
+                <div class="panel-header">
+                  <div>
+                    <h3>Jobs relacionados</h3>
+                    <p class="muted">Ultimas mensagens e jobs ligados a esta instancia.</p>
+                  </div>
+                </div>
+                <div id="instance-jobs" class="jobs-list empty-state">Selecione uma instancia para carregar os jobs.</div>
+              </div>
+            </div>
+
+            <div class="detail-tab-panel" data-detail-panel="webhooks">
+              <div class="details-logs-block details-logs-block-first">
+                <div class="panel-header">
+                  <div>
+                    <h3>Configuracao de webhooks</h3>
+                    <p class="muted">Leitura operacional da instancia com base no modulo estrutural de webhooks.</p>
+                  </div>
+                </div>
+                <div id="instance-webhooks" class="stack empty-state">Selecione uma instancia para configurar os webhooks desta clinica.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view-panel" data-view="messages">
+        <div class="summary-grid summary-grid-compact">
+          <article class="summary-card">
+            <span>Enviado hoje</span>
+            <strong id="messages-sent-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Falho hoje</span>
+            <strong id="messages-failed-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Jobs pendentes</span>
+            <strong id="messages-queued-today">0</strong>
+          </article>
+          <article class="summary-card">
+            <span>Processando</span>
+            <strong id="messages-processing-today">0</strong>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-header panel-header-stack">
+            <div>
+              <h3>Mensagens recentes</h3>
+              <p class="muted">Jobs reais do engine com foco em operacao, falhas e reprocessamento.</p>
+            </div>
+            <div class="filters-bar">
+              <input id="messages-search" type="search" placeholder="Buscar por numero ou texto">
+              <input id="messages-clinic-filter" type="text" placeholder="Filtrar por clinicId">
+              <select id="messages-status-filter" aria-label="Filtrar jobs por status">
+                <option value="">Todos os status</option>
+                <option value="QUEUED">Queued</option>
+                <option value="PROCESSING">Processing</option>
+                <option value="SENT">Sent</option>
+                <option value="FAILED">Failed</option>
+                <option value="SCHEDULED">Scheduled</option>
+                <option value="BLOCKED">Blocked</option>
+              </select>
+            </div>
+          </div>
+          <div id="messages-list" class="jobs-list empty-state">Carregando mensagens...</div>
+        </article>
+      </section>
+
+      <section class="view-panel" data-view="webhooks">
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Visao geral da integracao</h3>
+                <p class="muted">Direcionamento do modulo, cobertura atual e preparo para configuracao por instancia.</p>
+              </div>
+            </div>
+            <div class="stack webhook-overview-stack">
+              <div class="health-card">
+                <span class="health-label">URL base configurada</span>
+                <strong id="webhooks-base-url">Nao configurada</strong>
+                <p id="webhooks-base-url-note" class="muted">A configuracao por instancia ainda nao esta persistida nesta fase.</p>
+              </div>
+              <div class="health-card">
+                <span class="health-label">Escopo operacional</span>
+                <strong id="webhooks-scope-status">Estrutura compartilhada</strong>
+                <p id="webhooks-scope-note" class="muted">Carregando escopo de configuracao...</p>
+              </div>
+              <div class="health-card">
+                <span class="health-label">Eventos suportados</span>
+                <strong id="webhooks-event-count">0 eventos</strong>
+                <p class="muted">Cada evento pode ser inspecionado no configurador abaixo.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Configurador visual</h3>
+                <p class="muted">Experiencia de configuracao inspirada no fluxo operacional do produto, sem quebrar o padrao atual.</p>
+              </div>
+            </div>
+            <div class="webhooks-config-layout">
+              <div class="stack">
+                <div id="webhooks-events" class="webhook-event-grid empty-state">Carregando eventos...</div>
+                <button id="webhooks-test-button" class="btn btn-secondary btn-small" type="button">Executar teste visual</button>
+              </div>
+              <div class="stack">
+                <div id="webhooks-sample-payload" class="json-preview empty-state">Selecione um evento para ver o payload de exemplo.</div>
+                <div id="webhooks-history" class="log-list empty-state">Historico real de entregas ficara para a proxima fase.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view-panel" data-view="security">
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Token interno</h3>
+                <p class="muted">Visao segura do token usado para proteger a API e o painel.</p>
+              </div>
+            </div>
+            <div class="stack">
+              <div class="health-card">
+                <span class="health-label">Token mascarado</span>
+                <strong id="security-masked-token">Carregando...</strong>
+                <p class="muted">A copia usa o token ja autenticado em sessao, sem expor o valor pelo backend.</p>
+              </div>
+              <div class="panel-actions">
+                <button id="security-copy-token" class="btn btn-secondary btn-small" type="button">Copiar token atual</button>
+                <button class="btn btn-ghost btn-small" type="button" disabled>Rotacao em breve</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Controles futuros</h3>
+                <p class="muted">Estrutura segura para as proximas camadas de endurecimento.</p>
+              </div>
+            </div>
+            <div id="security-placeholders" class="stack"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view-panel" data-view="logs">
+        <article class="panel">
+          <div class="panel-header panel-header-stack">
+            <div>
+              <h3>Logs recentes</h3>
+              <p class="muted">Visao operacional dos eventos do engine para suporte e diagnostico rapido.</p>
+            </div>
+            <div class="filters-bar">
+              <input id="logs-search" type="search" placeholder="Buscar em logs e payloads">
+              <input id="logs-clinic-filter" type="text" placeholder="Filtrar por clinicId">
+              <input id="logs-instance-filter" type="text" placeholder="Filtrar por instanceId">
+              <select id="logs-type-filter" aria-label="Filtrar por tipo de log">
+                <option value="">Todos os tipos</option>
+                <option value="QUEUED">Queued</option>
+                <option value="PROCESSING">Processing</option>
+                <option value="SENT">Sent</option>
+                <option value="FAILED">Failed</option>
+                <option value="RETRYING">Retrying</option>
+              </select>
+            </div>
+          </div>
+          <div id="logs-list" class="log-list empty-state">Carregando logs...</div>
+        </article>
+      </section>
+
+      <section class="view-panel" data-view="settings">
+        <article class="panel placeholder-panel">
+          <p class="eyebrow">Proxima fase</p>
+          <h3>Configuracoes</h3>
+          <p class="muted">Area preparada para parametrizacao do produto, defaults e preferencias operacionais.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div id="qr-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Conectar numero</p>
+          <h3>QR Code da instancia</h3>
+        </div>
+        <button class="icon-button" data-close-modal="qr-modal" type="button">x</button>
+      </div>
+      <div id="qr-modal-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <div id="message-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Teste operacional</p>
+          <h3>Enviar mensagem de teste</h3>
+        </div>
+        <button class="icon-button" data-close-modal="message-modal" type="button">x</button>
+      </div>
+      <form id="message-form" class="modal-content stack">
+        <input id="message-instance-id" type="hidden">
+        <input id="message-clinic-id" type="hidden">
+        <label>
+          <span>Numero de destino</span>
+          <input id="message-to-phone" type="text" placeholder="5511999999999" required>
+        </label>
+        <label>
+          <span>Mensagem</span>
+          <textarea id="message-body" rows="5" required>Mensagem de teste enviada pelo painel administrativo do Voithos WhatsApp Engine.</textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Enviar mensagem teste</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin-assets/admin.js"></script>
+</body>
+</html>

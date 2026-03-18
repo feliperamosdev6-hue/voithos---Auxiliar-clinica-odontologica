@@ -1,0 +1,216 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F4F6F8;
+  color: #1A1A1A;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #d8e1eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+#btn-voltar {
+  padding: 8px 12px;
+  background: #1FA87A;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#titulo-dia { margin: 0; color: #1A1A1A; }
+
+.day-container {
+  max-width: 960px;
+  margin: 20px auto;
+  background: #F4F6F8;
+  padding: 0 16px 20px;
+}
+
+.birthday-today {
+  background: #ffffff;
+  border: 1px solid #d8e1eb;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.birthday-today.hidden {
+  display: none;
+}
+
+.birthday-today-header h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #168562;
+}
+
+.birthday-today-list {
+  display: grid;
+  gap: 8px;
+}
+
+.birthday-item {
+  border: 1px solid #e5edf6;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f8fbff;
+}
+
+.birthday-item .meta {
+  display: grid;
+  gap: 2px;
+}
+
+.birthday-item .meta strong {
+  font-size: 0.95rem;
+}
+
+.birthday-item .meta span {
+  font-size: 0.83rem;
+  color: #4A4A4A;
+}
+
+.btn-birthday-send {
+  border: none;
+  border-radius: 999px;
+  background: #5b4bc4;
+  color: #fff;
+  padding: 7px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.birthday-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(91, 75, 196, 0.15);
+  color: #4c1d95;
+}
+
+.slots-header {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  font-weight: bold;
+  color: #4A4A4A;
+  padding: 8px 12px;
+}
+
+.slots-list { display: flex; flex-direction: column; gap: 8px; }
+
+.slot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: .25s;
+  border-left: 4px solid transparent;
+}
+.slot-row.ocupado { border-left-color: #1FA87A; }
+.slot-row.livre { border-left-color: #d8e1e8; }
+
+.slot-row:hover {
+  transform: scale(1.01);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.09);
+}
+
+.slot-time {
+  font-weight: bold;
+  color: #168562;
+  min-width: 120px;
+}
+
+.slot-info {
+  flex: 1;
+  margin-left: 16px;
+  color: #1A1A1A;
+}
+.slot-info .hora { margin-left: 8px; color: #168562; font-weight: 600; }
+.slot-meta { margin-top: 6px; display: flex; align-items: center; gap: 8px; color: #4A4A4A; }
+
+.slot-actions { display: flex; gap: 8px; }
+.slot-actions button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-outline, .btn-edit { background: #1FA87A; color:white; }
+.btn-danger, .btn-delete { background: #E74C3C; color:white; }
+
+.status-badge {
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 4px;
+}
+.status-em_aberto { background: #1FA87A; color: white; }
+.status-confirmado { background: #2ECC71; color: white; }
+.status-realizado { background: #95A5A6; color: white; }
+.status-nao_compareceu { background: #E74C3C; color: white; }
+.status-cancelado { background: #F1C40F; color: #333; }
+
+.fade-in { animation: fadeIn .25s ease-out; }
+.scale-hover:hover { transform: scale(1.03); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-bg { position: fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4); display:flex; justify-content:center; align-items:center; }
+.hidden { display:none; }
+.modal {
+  background: white;
+  padding: 22px;
+  width: 380px;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+  animation: fadeIn .25s ease-out;
+}
+.modal input, .modal select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #D8E1E8;
+}
+.modal-actions { display:flex; justify-content:space-between; }
+.btn-save {
+  background: #1FA87A;
+  color:white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border:none;
+  cursor:pointer;
+}
+.btn-cancel {
+  background: #E74C3C;
+  color:white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border:none;
+  cursor:pointer;
+}

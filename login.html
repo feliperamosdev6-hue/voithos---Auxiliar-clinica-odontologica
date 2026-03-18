@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Voithos</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="title"><img src="assets/logo-voithos.svg" alt="Voithos" class="title-logo"></h1>
+            <p class="subtitle">Acesse sua conta para continuar</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" name="email" autocomplete="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <p class="login-help"><a href="#" id="forgot-password-link">Esqueci minha senha</a></p>
+                <p id="error-message" class="error-message"></p>
+            </form>
+        </div>
+        <footer class="footer-container">
+            <p>&copy; 2026 voithos. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+    <script src="shared/adapters/desktop-adapter.js"></script>
+    <script src="shared/adapters/web-adapter.js"></script>
+    <script src="shared/app-api.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>
+
+
+

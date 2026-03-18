@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relacionamento</title>
+  <link rel="stylesheet" href="relacionamento.css">
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+  <header class="header-container">
+    <a href="index.html" class="brand-home" aria-label="Ir para inicio"><span class="back-home-icon" aria-hidden="true"></span><span>Inicio</span></a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="cadastro-paciente.html">Novo cadastro</a></li>
+        <li><a href="contratos.html">Contratos</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="attn-menu" id="attn-menu">
+        <button class="attn-toggle" id="attn-toggle" type="button" aria-expanded="false" aria-controls="attn-dropdown">
+          Atendimento
+          <span class="attn-caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="attn-dropdown" id="attn-dropdown" role="menu">
+          <a class="attn-item" href="anamnese.html" role="menuitem">
+            <span class="attn-icon" aria-hidden="true"></span>
+            Anamnese
+          </a>
+                    <a class="attn-item" href="receita.html" role="menuitem">
+                        <span class="attn-icon" aria-hidden="true"></span>
+                        Receituario
+                    </a>
+          <a class="attn-item" href="servicos.html" role="menuitem">
+            <span class="attn-icon" aria-hidden="true"></span>
+            Servicos
+          </a>
+          <a class="attn-item" href="agendamentos.html" role="menuitem">
+            <span class="attn-icon" aria-hidden="true"></span>
+            Agenda
+          </a>
+          <a class="attn-item" href="arquivos.html" role="menuitem">
+            <span class="attn-icon" aria-hidden="true"></span>
+            Pacientes
+          </a>
+        </div>
+      </div>
+      <div class="gestao-menu" id="gestao-menu">
+        <button class="gestao-toggle" id="gestao-toggle" type="button" aria-expanded="false" aria-controls="gestao-dropdown">
+          Gestao
+          <span class="gestao-caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="gestao-dropdown" id="gestao-dropdown" role="menu">
+          <a class="gestao-item" href="gestao.html" role="menuitem">
+            <span class="gestao-icon" aria-hidden="true"></span>
+            <span class="gestao-text">Gestao financeira</span>
+            <span class="gestao-item-caret" aria-hidden="true">&#9656;</span>
+          </a>
+          <a class="gestao-item" href="comunicacao.html" role="menuitem">
+            <span class="gestao-icon" aria-hidden="true"></span>
+            <span class="gestao-text">Comunicacao</span>
+            <span class="gestao-item-caret" aria-hidden="true">&#9656;</span>
+          </a>
+          <a class="gestao-item is-active" href="relacionamento.html" role="menuitem" aria-current="page">
+            <span class="gestao-icon" aria-hidden="true"></span>
+            <span class="gestao-text">Relacionamento</span>
+            <span class="gestao-item-caret" aria-hidden="true">&#9656;</span>
+          </a>
+        </div>
+      </div>
+      <div class="user-menu" id="user-menu">
+        <button class="user-menu-toggle" id="user-menu-toggle" type="button">
+          <span class="user-avatar" aria-hidden="true">&#128100;</span>
+          <span class="user-label">
+            <span class="user-name" id="user-name">Usuario</span>
+            <span class="user-role-badge" id="user-role">(tipo)</span>
+          </span>
+          <span class="user-caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="user-menu-dropdown" id="user-menu-dropdown">
+          <button class="user-menu-item" data-action="manage" type="button">Gerenciar usuarios</button>
+          <button class="user-menu-item" data-action="change-password" type="button">Alterar senha</button>
+          <button class="user-menu-item" data-action="logout" type="button">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="page-header">
+    <div class="title-group">
+      <h1>Central de relacionamento</h1>
+      <p class="subtitle">Controle faltas e reagendamentos de maneira integrada.</p>
+    </div>
+    <a class="btn ghost" href="agendamentos.html">Abrir agenda</a>
+  </header>
+
+  <main class="page-content">
+    <section class="summary-grid">
+      <article class="summary-card" id="card-faltas">
+        <div class="summary-hero faltas" aria-hidden="true">&#128129;&#10060;</div>
+        <div>
+          <h2>Faltas</h2>
+          <p>Pacientes que nao compareceram aos agendamentos.</p>
+          <button class="link-button" type="button" data-target="faltas-list">Visualizar</button>
+        </div>
+        <span class="summary-count" id="faltas-count">0</span>
+      </article>
+      <article class="summary-card" id="card-desmarcados">
+        <div class="summary-hero desmarcados" aria-hidden="true">&#128198;&#10060;</div>
+        <div>
+          <h2>Desmarcados</h2>
+          <p>Pacientes que desmarcaram ou pediram reagendamento.</p>
+          <button class="link-button" type="button" data-target="desmarcados-list">Visualizar</button>
+        </div>
+        <span class="summary-count" id="desmarcados-count">0</span>
+      </article>
+    </section>
+
+    <section class="list-section" id="agendados-section">
+      <header>
+        <h3>Agendados recentes</h3>
+        <p class="muted">Marque como falta ou desmarcado para organizar os cards acima.</p>
+      </header>
+      <div class="list-grid" id="agendados-list"></div>
+    </section>
+
+    <section class="list-section" id="faltas-section">
+      <header>
+        <h3>Faltas</h3>
+        <p class="muted">Registros marcados como nao compareceu.</p>
+      </header>
+      <div class="list-grid" id="faltas-list"></div>
+    </section>
+
+    <section class="list-section" id="desmarcados-section">
+      <header>
+        <h3>Desmarcados</h3>
+        <p class="muted">Registros marcados para reagendamento.</p>
+      </header>
+      <div class="list-grid" id="desmarcados-list"></div>
+    </section>
+  </main>
+
+  <script src="header.js"></script>
+  <script src="shared/adapters/desktop-adapter.js"></script>
+  <script src="shared/adapters/web-adapter.js"></script>
+  <script src="shared/app-api.js"></script>
+  <script src="relacionamento.js"></script>
+</body>
+</html>
