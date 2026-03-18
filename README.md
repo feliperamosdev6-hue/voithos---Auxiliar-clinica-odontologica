@@ -44,6 +44,13 @@ Area de parametrizacao para ajustar regras, dados e configuracoes do ambiente da
 ### Cadastro de novo paciente
 Fluxo de entrada de novos pacientes com foco em organizacao cadastral e continuidade do atendimento.
 ![Cadastro de novo paciente](docs/screenshots/08-cadastro-paciente.gif)
+### WhatsApp NG e login operacional
+Entrada dedicada para o painel do engine de mensageria, reforcando a separacao entre a plataforma principal e a camada operacional de comunicacao.
+![WhatsApp NG login](docs/screenshots/10-whatsapp-ng-login.jpeg)
+
+### WhatsApp NG e dashboard de mensageria
+Visao do painel do engine responsavel por conexao, monitoramento e operacao da camada de WhatsApp, um dos diferenciais tecnicos da arquitetura.
+![WhatsApp NG dashboard](docs/screenshots/11-whatsapp-ng-dashboard.gif)
 
 ## O que este projeto demonstra
 - modelagem de um produto real para contexto de saude
@@ -144,3 +151,5 @@ Comandos principais presentes no projeto:
 
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
+
+
