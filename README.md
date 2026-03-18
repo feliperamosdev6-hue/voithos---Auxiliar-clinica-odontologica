@@ -19,11 +19,11 @@ Tela inicial com autenticacao voltada ao uso interno da clinica e entrada contro
 
 ### Dashboard operacional da clinica
 Visao inicial consolidada para orientar a operacao diaria e destacar informacoes de contexto rapido.
-![Dashboard](docs/screenshots/02-dashboard.png)
+![Dashboard](docs/screenshots/02-dashboard.gif)
 
 ### Agenda diaria com foco em operacao
 Interface pensada para a rotina de recepcao e acompanhamento dos compromissos do dia.
-![Agenda diaria](docs/screenshots/03-agenda-dia.png)
+![Agenda diaria](docs/screenshots/03-agenda-dia.gif)
 
 ### Gestao de agendamentos
 Fluxo dedicado para organizar marcacoes, atualizacoes e acompanhamento da agenda da clinica.
@@ -31,19 +31,19 @@ Fluxo dedicado para organizar marcacoes, atualizacoes e acompanhamento da agenda
 
 ### Prontuario e historico do paciente
 Area voltada a concentrar dados clinicos, historico e contexto de atendimento do paciente.
-![Prontuario](docs/screenshots/05-prontuario.png)
+![Prontuario](docs/screenshots/06-prontuario.gif)
 
 ### Painel de gestao
 Tela administrativa com foco em acompanhamento operacional e visibilidade gerencial.
-![Gestao](docs/screenshots/06-gestao.png)
+![Gestao](docs/screenshots/09-gestao.gif)
 
 ### Configuracoes do sistema
 Area de parametrizacao para ajustar regras, dados e configuracoes do ambiente da clinica.
-![Configuracoes](docs/screenshots/07-configuracoes.png)
+![Configuracoes](docs/screenshots/07-configuracoes.gif)
 
 ### Cadastro de novo paciente
 Fluxo de entrada de novos pacientes com foco em organizacao cadastral e continuidade do atendimento.
-![Cadastro de novo paciente](docs/screenshots/08-cadastro-novo-paciente.png)
+![Cadastro de novo paciente](docs/screenshots/08-cadastro-paciente.gif)
 
 ## O que este projeto demonstra
 - modelagem de um produto real para contexto de saude
@@ -144,5 +144,3 @@ Comandos principais presentes no projeto:
 
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
-
-
