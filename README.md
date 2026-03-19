@@ -124,12 +124,6 @@ Modulos para acompanhamento de rotinas administrativas e indicadores operacionai
 - Pino
 - Baileys
 
-## Como eu leria este projeto em uma avaliacao tecnica
-- ha preocupacao real com produto, nao apenas com interface
-- a arquitetura comunica criterio de separacao de responsabilidades
-- o projeto demonstra amplitude funcional e profundidade suficiente para discussao tecnica seria
-- o cuidado com sanitizacao publica indica maturidade profissional
-
 ## Execucao
 Esta copia publica foi preparada com foco em avaliacao tecnica. O setup completo depende de variaveis de ambiente e servicos auxiliares definidos em `.env.example`.
 
