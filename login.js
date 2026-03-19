@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('login-form');
   const errorMessage = document.getElementById('error-message');
   const emailInput = document.getElementById('login-email');
@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     window.location.href = 'index.html';
+  };
+
+  const demoSession = () => window.__voithosDemo?.getSession?.();
+
+  const redirectDemoIfNeeded = () => {
+    const session = demoSession();
+    if (session?.isDemo) {
+      window.location.href = 'demo-dashboard.html';
+      return true;
+    }
+    return false;
   };
 
   const checkActiveSession = async () => {
@@ -72,5 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  if (redirectDemoIfNeeded()) return;
+
   checkActiveSession();
 });
+

@@ -134,6 +134,14 @@ Esta copia publica foi preparada com foco em avaliacao tecnica. O setup completo
 - o projeto demonstra amplitude funcional e profundidade suficiente para discussão técnica séria
 - o cuidado com sanitização pública indica maturidade profissional
 
+## Modo de demonstração
+Esta cópia inclui uma entrada ilustrativa em `demo.html`, com perfis simulados e sessão em `localStorage`, para apresentar o produto sem depender de login real nem de ambiente operacional completo.
+
+Perfis disponíveis:
+- admin
+- recepção
+- dentista
+
 ## Execução
 Esta cópia pública foi preparada com foco em avaliação técnica. O setup completo depende de variáveis de ambiente e serviços auxiliares definidos em `.env.example`.
 >>>>>>> 3d3f380 (Polish README Portuguese and recruiter-facing copy)
@@ -148,3 +156,4 @@ Este projeto foi desenvolvido com apoio de ferramentas de IA para acelerar parte
 
 ## Observação
 Este repositório representa uma versão de portfolio de um sistema em evolução. Ele foi curado para demonstrar estrutura de produto, decisão técnica e maturidade de implementação sem comprometer segurança operacional.
+

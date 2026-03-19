@@ -1,0 +1,158 @@
+﻿:root {
+  --demo-bg: #f4f7f8;
+  --demo-panel: #ffffff;
+  --demo-text: #0f172a;
+  --demo-muted: #475569;
+  --demo-brand: #1fa87a;
+  --demo-brand-dark: #187f5d;
+  --demo-accent: #0f766e;
+  --demo-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--demo-text);
+  background: radial-gradient(circle at top right, rgba(31, 168, 122, 0.18), transparent 26%), linear-gradient(180deg, #f8fbfc 0%, var(--demo-bg) 100%);
+}
+.demo-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+.demo-entry-page .demo-shell {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  gap: 28px;
+}
+.demo-hero, .demo-profile-card, .demo-notes, .demo-profile-summary, .demo-module-card, .demo-dashboard-header {
+  background: var(--demo-panel);
+  border: 1px solid rgba(219, 228, 234, 0.9);
+  box-shadow: var(--demo-shadow);
+}
+.demo-hero {
+  border-radius: 28px;
+  padding: 36px;
+}
+.demo-logo {
+  width: 220px;
+  height: 48px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-bottom: 18px;
+}
+.demo-logo-small { width: 180px; height: 40px; margin-bottom: 12px; }
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: rgba(31, 168, 122, 0.12);
+  color: var(--demo-brand-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.demo-hero h1, .demo-dashboard-header h1 {
+  margin: 14px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+}
+.demo-hero p, .demo-dashboard-header p, .demo-profile-card p, .demo-summary-item p, .demo-module-copy p {
+  color: var(--demo-muted);
+  line-height: 1.6;
+}
+.demo-profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.demo-profile-card { border-radius: 22px; padding: 24px; }
+.demo-profile-card h2 { margin: 0 0 10px; font-size: 1.35rem; }
+.demo-enter-button, .demo-secondary-button, .demo-module-link {
+  appearance: none;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.demo-enter-button:hover, .demo-secondary-button:hover, .demo-module-link:hover { transform: translateY(-1px); opacity: 0.96; }
+.demo-enter-button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px 18px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--demo-brand), var(--demo-accent));
+}
+.demo-secondary-button {
+  padding: 12px 16px;
+  color: var(--demo-text);
+  background: #eef5f4;
+  border: 1px solid #d7e5e1;
+}
+.demo-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  border-radius: 22px;
+  padding: 22px 24px;
+}
+.demo-notes strong, .demo-summary-item strong { display: block; margin-bottom: 8px; }
+.demo-dashboard-shell { display: grid; gap: 20px; }
+.demo-dashboard-header {
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+}
+.demo-header-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.demo-profile-summary {
+  border-radius: 22px;
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.demo-summary-item {
+  border-radius: 18px;
+  padding: 16px;
+  background: linear-gradient(180deg, #f8fbfc 0%, #f0f6f5 100%);
+  border: 1px solid #ddeae7;
+}
+.demo-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.demo-module-card {
+  border-radius: 24px;
+  overflow: hidden;
+}
+.demo-module-media {
+  width: 100%;
+  display: block;
+  background: #edf4f3;
+}
+.demo-module-copy { padding: 20px; }
+.demo-module-copy h3 { margin: 0 0 10px; font-size: 1.2rem; }
+.demo-module-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(31, 168, 122, 0.12);
+  color: var(--demo-brand-dark);
+  text-decoration: none;
+}
+@media (max-width: 760px) {
+  .demo-dashboard-header { flex-direction: column; }
+  .demo-shell { width: min(100% - 24px, 1180px); padding-top: 24px; }
+}
