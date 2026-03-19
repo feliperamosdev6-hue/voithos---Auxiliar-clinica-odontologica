@@ -1,70 +1,70 @@
-# Voithos
+﻿# Voithós
 
-Plataforma desktop em desenvolvimento para gestao de clinicas odontologicas, com foco em agenda operacional, prontuario, atendimento, autenticacao e integracao dedicada com WhatsApp.
+Plataforma desktop em desenvolvimento para gestão de clínicas odontológicas, com foco em agenda operacional, prontuário, atendimento, autenticação e integração dedicada com WhatsApp.
 
-## Resumo rapido
-A Voithos foi estruturada para centralizar os principais fluxos operacionais de uma clinica em uma unica experiencia: agenda, pacientes, prontuario, configuracoes, gestao e comunicacao. Esta versao publica foi preparada como portfolio tecnico, preservando a arquitetura e a profundidade funcional sem expor dados ou ambiente operacional real.
+## Resumo rápido
+A Voithós foi estruturada para centralizar os principais fluxos operacionais de uma clínica em uma única experiência: agenda, pacientes, prontuário, configurações, gestão e comunicação. Esta versão pública foi preparada como portfolio técnico, preservando a arquitetura e a profundidade funcional sem expor dados ou ambiente operacional real.
 
 ## Por que este projeto se destaca
-- produto com escopo real e orientado a operacao, nao apenas uma interface isolada
+- produto com escopo real e orientado à operação, não apenas uma interface isolada
 - arquitetura separada entre desktop, IPC, backend principal e engine de mensageria
-- organizacao por dominio, reduzindo acoplamento entre interface e regra de negocio
-- preocupacao pratica com publicacao segura, segredos e sanitizacao de ambiente
-- demonstracao visual com fluxos reais da aplicacao e do WhatsApp NG
+- organização por domínio, reduzindo acoplamento entre interface e regra de negócio
+- preocupação prática com publicação segura, segredos e sanitização de ambiente
+- demonstração visual com fluxos reais da aplicação e do WhatsApp NG
 
 ## Problema
-A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento, melhorando a organizacao da recepcao e aumentando visibilidade sobre a rotina da clinica.
+A rotina de uma clínica odontológica costuma ficar fragmentada entre agenda, comunicação, cadastro de pacientes, prontuário e gestão administrativa. A proposta da Voithós é centralizar esses fluxos em uma única plataforma operacional, reduzindo fricção no atendimento, melhorando a organização da recepção e aumentando visibilidade sobre a rotina da clínica.
 
 ## Demo visual
 ### Login e controle de acesso
-Tela inicial com autenticacao voltada ao uso interno da clinica e entrada controlada no fluxo operacional.
+Tela inicial com autenticação voltada ao uso interno da clínica e entrada controlada no fluxo operacional.
 ![Login](docs/screenshots/01-login.png)
 
-### Dashboard operacional da clinica
-Visao inicial consolidada para orientar a operacao diaria e destacar informacoes de contexto rapido.
+### Dashboard operacional da clínica
+Visão inicial consolidada para orientar a operação diária e destacar informações de contexto rápido.
 ![Dashboard](docs/screenshots/02-dashboard.gif)
 
-### Agenda diaria com foco em operacao
-Interface pensada para a rotina de recepcao e acompanhamento dos compromissos do dia.
-![Agenda diaria](docs/screenshots/03-agenda-dia.gif)
+### Agenda diária com foco em operação
+Interface pensada para a rotina de recepção e acompanhamento dos compromissos do dia.
+![Agenda diária](docs/screenshots/03-agenda-dia.gif)
 
-### Gestao de agendamentos
-Fluxo dedicado para organizar marcacoes, atualizacoes e acompanhamento da agenda da clinica.
+### Gestão de agendamentos
+Fluxo dedicado para organizar marcações, atualizações e acompanhamento da agenda da clínica.
 ![Agendamentos](docs/screenshots/04-agendamentos.png)
 
-### Prontuario e historico do paciente
-Area voltada a concentrar dados clinicos, historico e contexto de atendimento do paciente.
-![Prontuario](docs/screenshots/06-prontuario.gif)
+### Prontuário e histórico do paciente
+Área voltada a concentrar dados clínicos, histórico e contexto de atendimento do paciente.
+![Prontuário](docs/screenshots/06-prontuario.gif)
 
-### Painel de gestao
+### Painel de gestão
 Tela administrativa com foco em acompanhamento operacional e visibilidade gerencial.
-![Gestao](docs/screenshots/09-gestao.gif)
+![Gestão](docs/screenshots/09-gestao.gif)
 
-### Configuracoes do sistema
-Area de parametrizacao para ajustar regras, dados e configuracoes do ambiente da clinica.
-![Configuracoes](docs/screenshots/07-configuracoes.gif)
+### Configurações do sistema
+Área de parametrização para ajustar regras, dados e configurações do ambiente da clínica.
+![Configurações](docs/screenshots/07-configuracoes.gif)
 
 ### Cadastro de novo paciente
-Fluxo de entrada de novos pacientes com foco em organizacao cadastral e continuidade do atendimento.
+Fluxo de entrada de novos pacientes com foco em organização cadastral e continuidade do atendimento.
 ![Cadastro de novo paciente](docs/screenshots/08-cadastro-paciente.gif)
 
 ### WhatsApp NG e login operacional
-Entrada dedicada para o painel do engine de mensageria, reforcando a separacao entre a plataforma principal e a camada operacional de comunicacao.
+Entrada dedicada para o painel do engine de mensageria, reforçando a separação entre a plataforma principal e a camada operacional de comunicação.
 ![WhatsApp NG login](docs/screenshots/10-whatsapp-ng-login.jpeg)
 
 ### WhatsApp NG e dashboard de mensageria
-Visao do painel do engine responsavel por conexao, monitoramento e operacao da camada de WhatsApp, um dos diferenciais tecnicos da arquitetura.
+Visão do painel do engine responsável por conexão, monitoramento e operação da camada de WhatsApp, um dos diferenciais técnicos da arquitetura.
 ![WhatsApp NG dashboard](docs/screenshots/11-whatsapp-ng-dashboard.gif)
 
 ## O que este projeto demonstra
-- modelagem de um produto real para contexto de saude
-- organizacao de codigo por responsabilidade e por dominio
-- separacao entre shell desktop, interface, backend e integracoes
-- preocupacao pratica com autenticacao, segredos e publicacao segura
-- estrutura preparada para evolucao de produto e modularizacao progressiva
+- modelagem de um produto real para contexto de saúde
+- organização de código por responsabilidade e por domínio
+- separação entre shell desktop, interface, backend e integrações
+- preocupação prática com autenticação, segredos e publicação segura
+- estrutura preparada para evolução de produto e modularização progressiva
 
 ## Arquitetura
-### Visao resumida
+### Visão resumida
 ```text
 Electron UI
   -> preload bridge
@@ -75,44 +75,44 @@ Electron UI
 ```
 
 ### Estrutura principal
-- `main.js`: orquestracao da aplicacao Electron
+- `main.js`: orquestração da aplicação Electron
 - `preload.js`: ponte controlada entre renderer e backend local
-- `ipc/`: handlers por dominio usados na aplicacao desktop
-- `backend/src/`: API, controladores, middlewares, repositorios e servicos
-- `services/` e `shared/`: regras de negocio e adaptadores reutilizaveis
-- `whatsapp-engine/`: servico isolado de mensageria e integracao
+- `ipc/`: handlers por domínio usados na aplicação desktop
+- `backend/src/`: API, controladores, middlewares, repositórios e serviços
+- `services/` e `shared/`: regras de negócio e adaptadores reutilizáveis
+- `whatsapp-engine/`: serviço isolado de mensageria e integração
 - `prisma/`: modelo de dados do backend principal
 
-## Decisoes tecnicas que fortalecem a base
-### Electron como shell da aplicacao
-A escolha por Electron atende ao objetivo de entregar uma experiencia desktop unica para operacao interna, com distribuicao simplificada e acesso controlado aos recursos locais da aplicacao.
+## Decisões técnicas que fortalecem a base
+### Electron como shell da aplicação
+A escolha por Electron atende ao objetivo de entregar uma experiência desktop única para operação interna, com distribuição simplificada e acesso controlado aos recursos locais da aplicação.
 
-### Separacao entre UI, IPC e backend
-A base evita concentrar toda a regra de negocio na interface. A camada de IPC faz a ponte entre a UI e os servicos, enquanto backend e modulos compartilhados concentram responsabilidades de dominio.
+### Separação entre UI, IPC e backend
+A base evita concentrar toda a regra de negócio na interface. A camada de IPC faz a ponte entre a UI e os serviços, enquanto backend e módulos compartilhados concentram responsabilidades de domínio.
 
 ### Motor de mensageria isolado
-A integracao de WhatsApp foi separada em um servico proprio para reduzir acoplamento, facilitar evolucao tecnica e manter preocupacoes operacionais fora do fluxo principal da interface.
+A integração de WhatsApp foi separada em um serviço próprio para reduzir acoplamento, facilitar evolução técnica e manter preocupações operacionais fora do fluxo principal da interface.
 
-### Sanitizacao para portfolio publico
-A versao publicada foi separada do sistema operacional original. Segredos, logs, sessoes, bancos locais e dados operacionais foram removidos ou substituidos por placeholders para evitar exposicao indevida.
+### Sanitização para portfolio público
+A versão publicada foi separada do sistema operacional original. Segredos, logs, sessões, bancos locais e dados operacionais foram removidos ou substituídos por placeholders para evitar exposição indevida.
 
-## Modulos de maior valor no portfolio
-### Agenda e operacao diaria
-Fluxos de agenda diaria, agenda mensal e gerenciamento de agendamentos com foco em uso operacional real.
+## Módulos de maior valor no portfolio
+### Agenda e operação diária
+Fluxos de agenda diária, agenda mensal e gerenciamento de agendamentos com foco em uso operacional real.
 
-### Pacientes e prontuario
-Cadastro, historico, documentos e dados clinicos organizados em torno da jornada do paciente.
+### Pacientes e prontuário
+Cadastro, histórico, documentos e dados clínicos organizados em torno da jornada do paciente.
 
-### Autenticacao e perfis
-Controle de acesso, perfis de usuario e isolamento de responsabilidades administrativas e clinicas.
+### Autenticação e perfis
+Controle de acesso, perfis de usuário e isolamento de responsabilidades administrativas e clínicas.
 
-### Comunicacao e automacao
-Camada de comunicacao voltada a confirmacoes, mensagens e integracoes operacionais.
+### Comunicação e automação
+Camada de comunicação voltada a confirmações, mensagens e integrações operacionais.
 
-### Financeiro e gestao
-Modulos para acompanhamento de rotinas administrativas e indicadores operacionais.
+### Financeiro e gestão
+Módulos para acompanhamento de rotinas administrativas e indicadores operacionais.
 
-## Stack tecnica
+## Stack técnica
 - Electron
 - Node.js
 - JavaScript e TypeScript
@@ -124,16 +124,27 @@ Modulos para acompanhamento de rotinas administrativas e indicadores operacionai
 - Pino
 - Baileys
 
+<<<<<<< HEAD
 ## Execucao
 Esta copia publica foi preparada com foco em avaliacao tecnica. O setup completo depende de variaveis de ambiente e servicos auxiliares definidos em `.env.example`.
+=======
+## Como eu leria este projeto em uma avaliação técnica
+- há preocupação real com produto, não apenas com interface
+- a arquitetura comunica critério de separação de responsabilidades
+- o projeto demonstra amplitude funcional e profundidade suficiente para discussão técnica séria
+- o cuidado com sanitização pública indica maturidade profissional
+
+## Execução
+Esta cópia pública foi preparada com foco em avaliação técnica. O setup completo depende de variáveis de ambiente e serviços auxiliares definidos em `.env.example`.
+>>>>>>> 3d3f380 (Polish README Portuguese and recruiter-facing copy)
 
 Comandos principais presentes no projeto:
 - app desktop: `npm start`
 - backend principal: `npm run backend:start`
 - engine de mensageria: ver scripts em `whatsapp-engine/package.json`
 
-## Transparencia sobre uso de IA
-Este projeto foi desenvolvido com apoio de ferramentas de IA para acelerar partes do processo, especialmente revisao textual, estruturacao de documentacao, refinamento de apresentacao e apoio pontual na iteracao tecnica. A concepcao do produto, as decisoes de arquitetura, a conducao da implementacao e a curadoria final do repositorio permaneceram sob direcao autoral humana.
+## Transparência sobre uso de IA
+Este projeto foi desenvolvido com apoio de ferramentas de IA para acelerar partes do processo, especialmente revisão textual, estruturação de documentação, refinamento de apresentação e apoio pontual na iteração técnica. A concepção do produto, as decisões de arquitetura, a condução da implementação e a curadoria final do repositório permaneceram sob direção autoral humana.
 
-## Observacao
-Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
+## Observação
+Este repositório representa uma versão de portfolio de um sistema em evolução. Ele foi curado para demonstrar estrutura de produto, decisão técnica e maturidade de implementação sem comprometer segurança operacional.
