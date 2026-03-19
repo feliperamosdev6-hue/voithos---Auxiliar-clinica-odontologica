@@ -2,17 +2,20 @@
 
 Plataforma desktop em desenvolvimento para gestao de clinicas odontologicas, com foco em agenda operacional, prontuario, atendimento, autenticacao e integracao dedicada com WhatsApp.
 
-## Highlights
-- aplicacao desktop com Electron para operacao diaria da clinica
-- backend modular para autenticacao, pacientes, agenda e automacoes
-- engine isolado de WhatsApp para mensageria e integracoes operacionais
-- separacao clara entre interface, IPC, servicos, backend e mensageria
-- copia publica sanitizada para demonstrar arquitetura sem expor ambiente real
+## Resumo rapido
+A Voithos foi estruturada para centralizar os principais fluxos operacionais de uma clinica em uma unica experiencia: agenda, pacientes, prontuario, configuracoes, gestao e comunicacao. Esta versao publica foi preparada como portfolio tecnico, preservando a arquitetura e a profundidade funcional sem expor dados ou ambiente operacional real.
+
+## Por que este projeto se destaca
+- produto com escopo real e orientado a operacao, nao apenas uma interface isolada
+- arquitetura separada entre desktop, IPC, backend principal e engine de mensageria
+- organizacao por dominio, reduzindo acoplamento entre interface e regra de negocio
+- preocupacao pratica com publicacao segura, segredos e sanitizacao de ambiente
+- demonstracao visual com fluxos reais da aplicacao e do WhatsApp NG
 
 ## Problema
 A rotina de uma clinica odontologica costuma ficar fragmentada entre agenda, comunicacao, cadastro de pacientes, prontuario e gestao administrativa. A proposta da Voithos e centralizar esses fluxos em uma unica plataforma operacional, reduzindo friccao no atendimento, melhorando a organizacao da recepcao e aumentando visibilidade sobre a rotina da clinica.
 
-## Screenshots
+## Demo visual
 ### Login e controle de acesso
 Tela inicial com autenticacao voltada ao uso interno da clinica e entrada controlada no fluxo operacional.
 ![Login](docs/screenshots/01-login.png)
@@ -80,6 +83,19 @@ Electron UI
 - `whatsapp-engine/`: servico isolado de mensageria e integracao
 - `prisma/`: modelo de dados do backend principal
 
+## Decisoes tecnicas que fortalecem a base
+### Electron como shell da aplicacao
+A escolha por Electron atende ao objetivo de entregar uma experiencia desktop unica para operacao interna, com distribuicao simplificada e acesso controlado aos recursos locais da aplicacao.
+
+### Separacao entre UI, IPC e backend
+A base evita concentrar toda a regra de negocio na interface. A camada de IPC faz a ponte entre a UI e os servicos, enquanto backend e modulos compartilhados concentram responsabilidades de dominio.
+
+### Motor de mensageria isolado
+A integracao de WhatsApp foi separada em um servico proprio para reduzir acoplamento, facilitar evolucao tecnica e manter preocupacoes operacionais fora do fluxo principal da interface.
+
+### Sanitizacao para portfolio publico
+A versao publicada foi separada do sistema operacional original. Segredos, logs, sessoes, bancos locais e dados operacionais foram removidos ou substituidos por placeholders para evitar exposicao indevida.
+
 ## Modulos de maior valor no portfolio
 ### Agenda e operacao diaria
 Fluxos de agenda diaria, agenda mensal e gerenciamento de agendamentos com foco em uso operacional real.
@@ -96,26 +112,6 @@ Camada de comunicacao voltada a confirmacoes, mensagens e integracoes operaciona
 ### Financeiro e gestao
 Modulos para acompanhamento de rotinas administrativas e indicadores operacionais.
 
-## Decisoes Tecnicas
-### Electron como shell da aplicacao
-A escolha por Electron atende ao objetivo de entregar uma experiencia desktop unica para operacao interna, com distribuicao simplificada e acesso controlado aos recursos locais da aplicacao.
-
-### Separacao entre UI, IPC e backend
-A base evita concentrar toda a regra de negocio na interface. A camada de IPC faz a ponte entre a UI e os servicos, enquanto backend e modulos compartilhados concentram responsabilidades de dominio.
-
-### Motor de mensageria isolado
-A integracao de WhatsApp foi separada em um servico proprio para reduzir acoplamento, facilitar evolucao tecnica e manter preocupacoes operacionais fora do fluxo principal da interface.
-
-### Sanitizacao para portfolio publico
-A versao publicada foi separada do sistema operacional original. Segredos, logs, sessoes, bancos locais e dados operacionais foram removidos ou substituidos por placeholders para evitar exposicao indevida.
-
-## Highlights de Engenharia
-- separacao de responsabilidades entre interface, ponte de integracao, servicos e backend
-- organizacao por dominio em vez de concentrar a complexidade nas telas
-- integracao externa isolada em um servico proprio para reduzir acoplamento
-- preocupacao real com seguranca na publicacao do portfolio
-- estrutura que comunica produto, operacao e capacidade de evolucao tecnica
-
 ## Stack tecnica
 - Electron
 - Node.js
@@ -128,12 +124,11 @@ A versao publicada foi separada do sistema operacional original. Segredos, logs,
 - Pino
 - Baileys
 
-## Como ler este projeto como recrutador
-Os pontos mais relevantes nesta base sao:
-- capacidade de estruturar um produto com varias camadas
-- coerencia entre interface, backend e integracoes
-- preocupacao com seguranca e publicacao responsavel
-- visao de produto aplicada a um sistema operacional real
+## Como eu leria este projeto em uma avaliacao tecnica
+- ha preocupacao real com produto, nao apenas com interface
+- a arquitetura comunica criterio de separacao de responsabilidades
+- o projeto demonstra amplitude funcional e profundidade suficiente para discussao tecnica seria
+- o cuidado com sanitizacao publica indica maturidade profissional
 
 ## Execucao
 Esta copia publica foi preparada com foco em avaliacao tecnica. O setup completo depende de variaveis de ambiente e servicos auxiliares definidos em `.env.example`.
@@ -143,18 +138,8 @@ Comandos principais presentes no projeto:
 - backend principal: `npm run backend:start`
 - engine de mensageria: ver scripts em `whatsapp-engine/package.json`
 
-## Roadmap curto
-- evoluir demonstracao guiada do produto
-- ampliar observabilidade e documentacao tecnica
-- consolidar ainda mais a modularizacao por dominio
-- preparar demonstracao publica mais proxima do fluxo real
-- adicionar GIF curto de navegacao do produto
-
 ## Transparencia sobre uso de IA
 Este projeto foi desenvolvido com apoio de ferramentas de IA para acelerar partes do processo, especialmente revisao textual, estruturacao de documentacao, refinamento de apresentacao e apoio pontual na iteracao tecnica. A concepcao do produto, as decisoes de arquitetura, a conducao da implementacao e a curadoria final do repositorio permaneceram sob direcao autoral humana.
+
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
-
-
-
-
