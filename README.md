@@ -44,6 +44,7 @@ Area de parametrizacao para ajustar regras, dados e configuracoes do ambiente da
 ### Cadastro de novo paciente
 Fluxo de entrada de novos pacientes com foco em organizacao cadastral e continuidade do atendimento.
 ![Cadastro de novo paciente](docs/screenshots/08-cadastro-paciente.gif)
+
 ### WhatsApp NG e login operacional
 Entrada dedicada para o painel do engine de mensageria, reforcando a separacao entre a plataforma principal e a camada operacional de comunicacao.
 ![WhatsApp NG login](docs/screenshots/10-whatsapp-ng-login.jpeg)
@@ -149,7 +150,11 @@ Comandos principais presentes no projeto:
 - preparar demonstracao publica mais proxima do fluxo real
 - adicionar GIF curto de navegacao do produto
 
+## Transparencia sobre uso de IA
+Este projeto foi desenvolvido com apoio de ferramentas de IA para acelerar partes do processo, especialmente revisao textual, estruturacao de documentacao, refinamento de apresentacao e apoio pontual na iteracao tecnica. A concepcao do produto, as decisoes de arquitetura, a conducao da implementacao e a curadoria final do repositorio permaneceram sob direcao autoral humana.
 ## Observacao
 Este repositorio representa uma versao de portfolio de um sistema em evolucao. Ele foi curado para demonstrar estrutura de produto, decisao tecnica e maturidade de implementacao sem comprometer seguranca operacional.
+
+
 
 
